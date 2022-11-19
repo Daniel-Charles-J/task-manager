@@ -1,15 +1,26 @@
 import {useState} from "react";
 import Model from "./Model";
 import {db} from "../FireBase/Firebase.js"
-import {collection, addDoc, timeStamp} from "firebase/firestore"
+import {collection, addDoc, timeStamp, Timestamp} from "firebase/firestore"
 import "../Styles/addTask.css";
 
 function AddTask({onClose, open}){
     const[title, setTitle] = useState("");
     const[description, setDescription] = useState("");
 
-    function handleSubmit(e){
+    async function handleSubmit(e){
         e.preventDefault();
+        try{
+            await addDoc(collection(db, 'tasks'),{
+                title:title,
+                description: description,
+                completed : false,
+                created : Timestamp.now(),
+            })
+        }
+        catch(e){
+            alert(e);
+        }
         onClose();
     }
     return(
