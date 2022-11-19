@@ -30,7 +30,7 @@ function Task(props){
             </div>
             <div>
               <h2>{title}</h2>
-              <h2>{id}</h2>
+              {/* <h2>{id}</h2> */}
               <p>{description}</p>
             </div>
             <div className="task__buttons">
