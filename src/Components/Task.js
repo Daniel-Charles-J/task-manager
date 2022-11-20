@@ -13,11 +13,22 @@ function Task(props){
     const [open,setOpen] = useState({edit:false, view:false});
 
     //delete method
-    function handleDelete(){
-        console.log("hello");
+    async function handleDelete(){
+        const tastDocRef = doc(db,"tasks", id);
+        try {
+            await deleteDoc(tastDocRef);
+        } catch (error) {
+            alert(error);
+        }
     }
-    const handleChange = () =>{
-        console.log("onchange");
+    const handleChange = async () =>{
+        const tastDocRef = doc(db,"tasks", id);
+        try {
+           await updateDoc(tastDocRef, {isCompleted : checked})
+        } catch (error) {
+            alert(error);
+        }
+       
     }
 
     const handleClose = () =>{
