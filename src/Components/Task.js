@@ -2,6 +2,8 @@ import "../Styles/task.css"
 import {useState} from "react";
 import TaskItem from "./TaskItem";
 import EditTask from "./EditTask";
+import {db} from "../FireBase/Firebase.js"
+import { updateDoc, doc, deleteDoc } from "firebase/firestore"
 
 
 function Task(props){
@@ -26,7 +28,7 @@ function Task(props){
         <div className={`task ${checked &&"task--borderColor"}`}>
             <div>
                 <input id={`checkbox ${id}`} className="checkbox-custom" name="checkbox" checked={checked} onChange={handleChange} type="checkbox"></input>
-                <label htmlFor={`checkbox ${id}`} onClick={() => setChecked(!checked)}></label>
+                <label htmlFor={`checkbox ${id}`} className="checkbox-custom-label" onClick={() => setChecked(!checked)}></label>
             </div>
             <div>
               <h2>{title}</h2>
